@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 14:23:40 by amblanch          #+#    #+#             */
-/*   Updated: 2025/10/08 10:12:22 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/10/10 10:36:51 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ MateriaSource::~MateriaSource() {
 MateriaSource::MateriaSource(MateriaSource const &other) {
     //std::cout << "copy constructor MateriaSource called" << std::endl;
     for (int i = 0; i < 4; i++)
-        tab[i] = other.tab[i];
+        tab[i] = other.tab[i]->clone();
 }
 
 MateriaSource &MateriaSource::operator=(const MateriaSource &other) {
     //std::cout << "operator constructor MateriaSource called" << std::endl;
     if (this != &other) {
         for (int i = 0; i < 4; i++)
-            tab[i] = other.tab[i];
+            tab[i] = other.tab[i]->clone();
     }
     return (*this);
 }
@@ -56,10 +56,12 @@ void MateriaSource::learnMateria(AMateria *m) {
 }
 
 AMateria* MateriaSource::createMateria(std::string const &type) {
-    if (type == "cure")
-        return (new Cure());
-    if (type == "ice")
-        return (new Ice());
+    for (int i = 0; i < 4; i++) {
+        if (type == "cure" && tab[i] != NULL && tab[i]->getType() == "cure")
+            return (tab[i]->clone());
+        if (type == "ice" && tab[i] != NULL && tab[i]->getType() == "ice")
+            return (tab[i]->clone());
+    }
     std::cout << "I don't know this materia !" << std::endl;
     return (0);
 }

@@ -6,22 +6,22 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 13:15:12 by amblanch          #+#    #+#             */
-/*   Updated: 2025/10/08 10:09:56 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/10/09 11:26:13 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cure.hpp"
 
-Cure::Cure() {
+Cure::Cure(): AMateria("cure") {
     //std::cout << "Default constructor Cure called" << std::endl;
-    name = ""; 
+    name = "cure"; 
 }
 
 Cure::~Cure() {
     //std::cout << "Destructor Cure called" << std::endl;
 }
 
-Cure::Cure(const Cure &other) {
+Cure::Cure(const Cure &other): AMateria("cure") {
     //std::cout << "copy constructor Cure called" << std::endl;
     this->name = other.name;
 }

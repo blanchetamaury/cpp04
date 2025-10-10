@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 14:57:31 by amblanch          #+#    #+#             */
-/*   Updated: 2025/10/08 09:03:58 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/10/09 09:26:26 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@
 class Character: public ICharacter
 {
     private:
-        AMateria    *slots[4];
-        std::string _user;
+        AMateria        *slots[4];
+        AMateria        **floor;
+        int             size;
+        std::string     _user;
     public:
         Character();
         Character(std::string user);

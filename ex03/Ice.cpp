@@ -6,22 +6,22 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 12:46:09 by amblanch          #+#    #+#             */
-/*   Updated: 2025/10/08 10:09:47 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/10/09 11:26:22 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Ice.hpp"
 
-Ice::Ice() {
+Ice::Ice(): AMateria("ice") {
     //std::cout << "Default constructor Ice called" << std::endl;
-    name = ""; 
+    name = "ice"; 
 }
 
 Ice::~Ice() {
     //std::cout << "Destructor Ice called" << std::endl;
 }
 
-Ice::Ice(const Ice &other) {
+Ice::Ice(const Ice &other): AMateria("ice") {
     //std::cout << "copy constructor Ice called" << std::endl;
     this->name = other.name;
 }

@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 10:47:11 by amblanch          #+#    #+#             */
-/*   Updated: 2025/10/08 10:49:55 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/10/10 09:13:17 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,15 @@ int main()
 
     std::cout << std::endl;
     
-    const WrongAnimal *wrongWrong = new WrongAnimal();
+    //const WrongAnimal *wrongWrong = new WrongAnimal();
     const WrongAnimal *wrong = new WrongCat();
     
     std::cout << "wrong is " << wrong->getType() << std::endl;
-    std::cout << "wrongWrong is " << wrongWrong->getType() << std::endl;
+    //std::cout << "wrongWrong is " << wrongWrong->getType() << std::endl;
     wrong->makeSound();
-    wrongWrong->makeSound();
+    //wrongWrong->makeSound();
 
-    delete wrongWrong;
+    //delete wrongWrong;
     
     delete wrong;
 

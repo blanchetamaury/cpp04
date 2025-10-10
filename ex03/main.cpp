@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 09:34:21 by amblanch          #+#    #+#             */
-/*   Updated: 2025/10/08 10:46:42 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/10/10 10:17:19 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,49 +15,95 @@
 
 int main()
 {
-    IMateriaSource* src = new MateriaSource();
-    
-    src->learnMateria(new Ice());
-    src->learnMateria(new Cure());
-    
-    ICharacter* me = new Character("me");
-    
-    AMateria* tmp;
-    
-    tmp = src->createMateria("ice");
-    me->equip(tmp);
-    
-    tmp = src->createMateria("cure");
-    me->equip(tmp);
-    
-    ICharacter* bob = new Character("bob");
-    me->use(0, *bob);
-    me->use(1, *bob);
+	std::cout << std::endl << std::endl;
 
-    std::cout << "------- MORE TEST -------\n";
+	IMateriaSource* src = new MateriaSource();
 
-    std::cout << "\nError full inventory :\n";
-    src->learnMateria(new Cure());
-    src->learnMateria(new Cure());
-    src->learnMateria(new Cure());
-    src->learnMateria(new Cure());
-    src->learnMateria(new Cure());
-    
-    std::cout << "\nError full inventory :\n";
-    for (int i = 0; i < 4; i++){
-        tmp = src->createMateria("cure");
-        me->equip(tmp);
-    }
-    
-    std::cout << "\nError type unknow :\n";
-    tmp = src->createMateria("ERROR");
+	src->learnMateria(new Ice());
+	src->learnMateria(new Cure());
+	src->learnMateria(new Ice());
+	src->learnMateria(new Cure());
 
-    std::cout << "\nError index use :\n";
-    me->use(5, *bob);
+	ICharacter* me = new Character("me");
+	AMateria* tmp;
 
-    delete bob;
-    delete me;
+	std::cout << std::endl << std::endl;
 
-    delete src;
-    return 0;
+
+
+
+
+	std::cout << "---------[INVENTORY FULL]----------" << std::endl;
+	tmp = src->createMateria("cure");
+	me->equip(tmp);
+	tmp = src->createMateria("ice");
+	me->equip(tmp);
+	tmp = src->createMateria("ice");
+	me->equip(tmp);
+	tmp = src->createMateria("ice");
+	me->equip(tmp);
+	tmp = src->createMateria("cure");
+	me->equip(tmp);
+
+	std::cout << std::endl << std::endl;
+
+
+
+
+	std::cout << "---------[UNEQUIP AND STORE]----------" << std::endl;
+	me->unequip(1);
+
+	ICharacter* bob = new Character("bob");
+	bob->equip(src->createMateria("ice"));
+	bob->equip(src->createMateria("cure"));
+	bob->unequip(0);
+
+	std::cout << std::endl << std::endl;
+
+
+
+
+	std::cout << "|---------[USE EXISTING/UNEXISTING]----------|" << std::endl;
+	me->use(2, *bob);
+	me->use(0, *bob);
+	me->use(1, *bob);
+	me->use(-630, *bob);
+	me->equip(NULL);
+
+	std::cout << std::endl << std::endl;
+
+
+
+
+	std::cout << "|---------[ASSIGNEMENT DEEP COPY]----------|" << std::endl;
+	me->equip(src->createMateria("cure"));
+	*static_cast<Character*>(bob) = *static_cast<Character*>(me);
+	me->unequip(3);
+	tmp = src->createMateria("ice");
+	me->equip(src->createMateria("cure"));
+	bob->equip(tmp);
+
+	std::cout << std::endl << std::endl;
+
+
+
+
+	std::cout << "|---------[COPY CONSTRUCTOR DEEP COPY]----------|" << std::endl;
+	Character jack("jack");
+	jack.equip(src->createMateria("cure"));
+	Character jackCopy(jack);
+	jack.unequip(0);
+	jackCopy.use(0, jack);
+
+	std::cout << std::endl << std::endl;
+
+	// std::cout << "|---------[DESTRUCTOR]----------|" << std::endl;
+
+	delete bob;
+	delete me;
+	delete src;
+
+	std::cout << std::endl << std::endl;
+
+	return (0);
 }
